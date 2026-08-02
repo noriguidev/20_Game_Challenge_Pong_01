@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://du5t6q2iykcmv"]
+
+[ext_resource type="Script" uid="uid://bw7sfgkp2a4i5" path="res://node_2d.gd" id="1_wtcfe"]
+[ext_resource type="Script" uid="uid://dkciyktbmq3mm" path="res://paddle.gd" id="2_0e48y"]
+[ext_resource type="Script" uid="uid://yl2puf7ltevm" path="res://paddle_2.gd" id="3_epypp"]
+[ext_resource type="Script" uid="uid://bqali4wnxuj5d" path="res://ball.gd" id="4_0hol4"]
+[ext_resource type="Texture2D" uid="uid://bp0imb1hgpeua" path="res://invisible_circle.png" id="5_q6r6c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8k68"]
+size = Vector2(22, 102)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b7nqx"]
+radius = 8.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_epypp"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b7nqx"]
+
+[node name="Node2D" type="Node2D" unique_id=2049127635]
+script = ExtResource("1_wtcfe")
+
+[node name="Paddle" type="RigidBody2D" parent="." unique_id=1165161354]
+position = Vector2(16, 320)
+mass = 0.001
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("2_0e48y")
+speed = 600
+
+[node name="Polygon2D" type="Polygon2D" parent="Paddle" unique_id=1021445727]
+position = Vector2(-172, -3)
+polygon = PackedVector2Array(183, -48, 161, -48, 161, 54, 183, 54)
+uv = PackedVector2Array(186, -39, 151, -42, 146, 10, 179, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle" unique_id=1836576735]
+shape = SubResource("RectangleShape2D_i8k68")
+
+[node name="Paddle2" type="RigidBody2D" parent="." unique_id=299029691]
+position = Vector2(1136, 320)
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("3_epypp")
+
+[node name="Polygon2D" type="Polygon2D" parent="Paddle2" unique_id=711814861]
+position = Vector2(-172, -3)
+polygon = PackedVector2Array(183, -48, 161, -48, 161, 54, 183, 54)
+uv = PackedVector2Array(186, -39, 151, -42, 146, 10, 179, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle2" unique_id=58267675]
+shape = SubResource("RectangleShape2D_i8k68")
+
+[node name="Ball" type="RigidBody2D" parent="." unique_id=595426501]
+position = Vector2(576, 320)
+gravity_scale = 0.0
+script = ExtResource("4_0hol4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=1147205533]
+position = Vector2(-1.6212463e-05, 2.7418137e-06)
+scale = Vector2(0.06255643, 0.062387604)
+texture = ExtResource("5_q6r6c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1076356698]
+shape = SubResource("CircleShape2D_b7nqx")
+
+[node name="MapBorderTop" type="StaticBody2D" parent="." unique_id=1122025206]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapBorderTop" unique_id=1296478320]
+shape = SubResource("WorldBoundaryShape2D_epypp")
+
+[node name="MapBorderBottom" type="StaticBody2D" parent="." unique_id=477979916]
+position = Vector2(0, 647)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MapBorderBottom" unique_id=1979032224]
+shape = SubResource("WorldBoundaryShape2D_b7nqx")
+
+[connection signal="body_entered" from="Paddle" to="Ball" method="_on_paddle_body_entered"]
