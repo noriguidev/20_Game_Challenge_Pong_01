@@ -21,6 +21,8 @@ ScoringSystem="*uid://22k1tin06sd"
 
 [display]
 
+window/size/viewport_width=700
+window/size/viewport_height=500
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

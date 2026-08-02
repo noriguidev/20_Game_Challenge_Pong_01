@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@export var speed = 600;
+@export var speed = 700;
 
 func _integrate_forces(state):
 	# Get a negative(up) and a positive(down) axis from a keybind to determine the direction

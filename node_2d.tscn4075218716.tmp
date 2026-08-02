@@ -6,17 +6,8 @@
 [ext_resource type="Script" uid="uid://bqali4wnxuj5d" path="res://ball.gd" id="4_0hol4"]
 [ext_resource type="Texture2D" uid="uid://bp0imb1hgpeua" path="res://invisible_circle.png" id="5_q6r6c"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d21ai"]
-rough = true
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i8k68"]
 size = Vector2(22, 102)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_rj586"]
-rough = true
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kdubu"]
-bounce = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b7nqx"]
 radius = 8.0
@@ -30,14 +21,12 @@ normal = Vector2(0, 1)
 script = ExtResource("1_wtcfe")
 
 [node name="Paddle" type="RigidBody2D" parent="." unique_id=1165161354]
-position = Vector2(16, 256)
-mass = 10.0
-physics_material_override = SubResource("PhysicsMaterial_d21ai")
+position = Vector2(16, 320)
+mass = 0.001
 gravity_scale = 0.0
 lock_rotation = true
-contact_monitor = true
-max_contacts_reported = 10
 script = ExtResource("2_0e48y")
+speed = 600
 
 [node name="Polygon2D" type="Polygon2D" parent="Paddle" unique_id=1021445727]
 position = Vector2(-172, -3)
@@ -48,9 +37,7 @@ uv = PackedVector2Array(186, -39, 151, -42, 146, 10, 179, 10)
 shape = SubResource("RectangleShape2D_i8k68")
 
 [node name="Paddle2" type="RigidBody2D" parent="." unique_id=299029691]
-position = Vector2(680, 256)
-mass = 10.0
-physics_material_override = SubResource("PhysicsMaterial_rj586")
+position = Vector2(1136, 320)
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("3_epypp")
@@ -64,15 +51,10 @@ uv = PackedVector2Array(186, -39, 151, -42, 146, 10, 179, 10)
 shape = SubResource("RectangleShape2D_i8k68")
 
 [node name="Ball" type="RigidBody2D" parent="." unique_id=595426501]
-top_level = true
-position = Vector2(352, 256)
-physics_material_override = SubResource("PhysicsMaterial_kdubu")
+position = Vector2(576, 320)
 gravity_scale = 0.0
-contact_monitor = true
-max_contacts_reported = 10
-constant_torque = 20.0
+constant_force = Vector2(1, 0)
 script = ExtResource("4_0hol4")
-initVelocity = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=1147205533]
 position = Vector2(-1.6212463e-05, 2.7418137e-06)
@@ -89,14 +71,9 @@ position = Vector2(0, 1)
 shape = SubResource("WorldBoundaryShape2D_epypp")
 
 [node name="MapBorderBottom" type="StaticBody2D" parent="." unique_id=477979916]
-position = Vector2(0, 499)
+position = Vector2(0, 647)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapBorderBottom" unique_id=1979032224]
 shape = SubResource("WorldBoundaryShape2D_b7nqx")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=42712993]
-position = Vector2(352, 256)
-
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=1840372337]
-color = Color(0.69803923, 0.69803923, 0.69803923, 0.70980394)
-polygon = PackedVector2Array(-8, -264, -8, 248, 8, 248, 8, -264)
+[connection signal="body_entered" from="Paddle" to="Ball" method="_on_paddle_body_entered"]

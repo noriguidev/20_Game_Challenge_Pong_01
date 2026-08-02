@@ -1,8 +1,5 @@
-res://paddle.gd
 res://node_2d.tscn
 res://node_2d.gdshader
-res://paddle.tscn
-res://paddle_2.gd
 res://ball.gd
-res://node_2d.gd
-res://scoring_system.gd
+res://paddle.gd
+res://paddle_2.gd

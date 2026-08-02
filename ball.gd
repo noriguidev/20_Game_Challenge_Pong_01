@@ -1,8 +1,10 @@
 extends RigidBody2D
 
-@export var speed = 200
-@export var ballPos = global_position
+@export var initVelocity: Vector2 = Vector2(400, 20)
 
-
-func _on_paddle_body_entered(body: Node) -> void:
-	pass # Replace with function body.
+func _physics_process(delta: float) -> void:
+	var collide = move_and_collide(initVelocity * delta)
+	if collide && body_entered("Paddle"):
+		initVelocity = initVelocity.bounce(collide.get_normal())
+		initVelocity.x *= 1.05
+		initVelocity.y *= 1.05
