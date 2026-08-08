@@ -21,10 +21,16 @@ bounce = 1.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_b7nqx"]
 radius = 8.0
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_epypp"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_q6r6c"]
 normal = Vector2(0, 1)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b7nqx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kdubu"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_epypp"]
+normal = Vector2(-1, 0)
 
 [node name="Node2D" type="Node2D" unique_id=2049127635]
 script = ExtResource("1_wtcfe")
@@ -72,9 +78,8 @@ physics_material_override = SubResource("PhysicsMaterial_kdubu")
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 10
-constant_torque = 20.0
 script = ExtResource("4_0hol4")
-maxAngle = 0.2
+maxAngle = 0.8
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=1147205533]
 position = Vector2(-1.6212463e-05, 2.7418137e-06)
@@ -88,7 +93,7 @@ shape = SubResource("CircleShape2D_b7nqx")
 position = Vector2(0, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MapBorderTop" unique_id=1296478320]
-shape = SubResource("WorldBoundaryShape2D_epypp")
+shape = SubResource("WorldBoundaryShape2D_q6r6c")
 
 [node name="MapBorderBottom" type="StaticBody2D" parent="." unique_id=477979916]
 position = Vector2(0, 499)
@@ -102,5 +107,17 @@ position = Vector2(352, 256)
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=1840372337]
 color = Color(0.69803923, 0.69803923, 0.69803923, 0.70980394)
 polygon = PackedVector2Array(-8, -264, -8, 248, 8, 248, 8, -264)
+
+[node name="OutOfMapLeft" type="StaticBody2D" parent="." unique_id=1996803914 groups=["OutOfMapLeft"]]
+position = Vector2(-24, 256)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfMapLeft" unique_id=1063444440 groups=["OutOfMapLeft"]]
+shape = SubResource("WorldBoundaryShape2D_kdubu")
+
+[node name="OutOfMapRight" type="StaticBody2D" parent="." unique_id=1778617741 groups=["OutOfMapRight"]]
+position = Vector2(724, 256)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfMapRight" unique_id=1763758148 groups=["OutOfMapRight"]]
+shape = SubResource("WorldBoundaryShape2D_epypp")
 
 [connection signal="body_entered" from="Paddle" to="Ball" method="_on_paddle_body_entered"]

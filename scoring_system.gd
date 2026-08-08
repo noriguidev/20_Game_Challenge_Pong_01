@@ -1,4 +1,5 @@
 extends Node
 
-@export var score = 0
-@export var bestScore = 0
+var pOneScore: int = 0
+var pTwoScore: int = 0
+var bestScore: int = 0

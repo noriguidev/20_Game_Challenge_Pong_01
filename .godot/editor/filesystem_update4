@@ -1,3 +1,4 @@
 res://node_2d.tscn
 res://node_2d.gdshader
 res://ball.gd
+res://scoring_system.gd
