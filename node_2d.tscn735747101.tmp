@@ -48,13 +48,11 @@ uv = PackedVector2Array(186, -39, 151, -42, 146, 10, 179, 10)
 shape = SubResource("RectangleShape2D_i8k68")
 
 [node name="Paddle2" type="RigidBody2D" parent="." unique_id=299029691 groups=["Paddle"]]
-position = Vector2(686, 256)
+position = Vector2(680, 256)
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_rj586")
 gravity_scale = 0.0
 lock_rotation = true
-contact_monitor = true
-max_contacts_reported = 10
 script = ExtResource("3_epypp")
 
 [node name="Polygon2D" type="Polygon2D" parent="Paddle2" unique_id=711814861 groups=["Paddle"]]
@@ -74,7 +72,7 @@ contact_monitor = true
 max_contacts_reported = 10
 constant_torque = 20.0
 script = ExtResource("4_0hol4")
-maxAngle = 0.2
+initVelocity = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=1147205533]
 position = Vector2(-1.6212463e-05, 2.7418137e-06)

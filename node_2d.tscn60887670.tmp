@@ -29,7 +29,7 @@ normal = Vector2(0, 1)
 [node name="Node2D" type="Node2D" unique_id=2049127635]
 script = ExtResource("1_wtcfe")
 
-[node name="Paddle" type="RigidBody2D" parent="." unique_id=1165161354 groups=["Paddle"]]
+[node name="Paddle" type="RigidBody2D" parent="." unique_id=1165161354]
 position = Vector2(16, 256)
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_d21ai")
@@ -39,30 +39,28 @@ contact_monitor = true
 max_contacts_reported = 10
 script = ExtResource("2_0e48y")
 
-[node name="Polygon2D" type="Polygon2D" parent="Paddle" unique_id=1021445727 groups=["Paddle"]]
+[node name="Polygon2D" type="Polygon2D" parent="Paddle" unique_id=1021445727]
 position = Vector2(-172, -3)
 polygon = PackedVector2Array(183, -48, 161, -48, 161, 54, 183, 54)
 uv = PackedVector2Array(186, -39, 151, -42, 146, 10, 179, 10)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle" unique_id=1836576735 groups=["Paddle"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle" unique_id=1836576735]
 shape = SubResource("RectangleShape2D_i8k68")
 
-[node name="Paddle2" type="RigidBody2D" parent="." unique_id=299029691 groups=["Paddle"]]
-position = Vector2(686, 256)
+[node name="Paddle2" type="RigidBody2D" parent="." unique_id=299029691]
+position = Vector2(680, 256)
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_rj586")
 gravity_scale = 0.0
 lock_rotation = true
-contact_monitor = true
-max_contacts_reported = 10
 script = ExtResource("3_epypp")
 
-[node name="Polygon2D" type="Polygon2D" parent="Paddle2" unique_id=711814861 groups=["Paddle"]]
+[node name="Polygon2D" type="Polygon2D" parent="Paddle2" unique_id=711814861]
 position = Vector2(-172, -3)
 polygon = PackedVector2Array(183, -48, 161, -48, 161, 54, 183, 54)
 uv = PackedVector2Array(186, -39, 151, -42, 146, 10, 179, 10)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle2" unique_id=58267675 groups=["Paddle"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paddle2" unique_id=58267675]
 shape = SubResource("RectangleShape2D_i8k68")
 
 [node name="Ball" type="RigidBody2D" parent="." unique_id=595426501]
@@ -74,7 +72,6 @@ contact_monitor = true
 max_contacts_reported = 10
 constant_torque = 20.0
 script = ExtResource("4_0hol4")
-maxAngle = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="Ball" unique_id=1147205533]
 position = Vector2(-1.6212463e-05, 2.7418137e-06)
@@ -102,5 +99,3 @@ position = Vector2(352, 256)
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=1840372337]
 color = Color(0.69803923, 0.69803923, 0.69803923, 0.70980394)
 polygon = PackedVector2Array(-8, -264, -8, 248, 8, 248, 8, -264)
-
-[connection signal="body_entered" from="Paddle" to="Ball" method="_on_paddle_body_entered"]
